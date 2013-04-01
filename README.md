@@ -4,7 +4,10 @@ Hook to run RSpec specs (placed in spec dir) before committing.
 
 ## Installation
 
-Copy pre-commit & pre-commit.rb files to <path-to-your-project>/.git/hooks/
+Execute in shell:
+
+    curl https://raw.github.com/hck/git-rspec-hook/master/pre-commit > <path-to-your-project>/.git/hooks/pre-commit
+    chmod +x <path-to-your-project>/.git/hooks/pre-commit
 
 ## Usage
 

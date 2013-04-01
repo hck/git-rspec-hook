@@ -5,6 +5,25 @@ if [ -d $HOME/.rbenv ]; then
   eval "$(rbenv init -)"
 
   ruby -v
-  ruby $0.rb
+  ruby <<< "`sed -n $(( $LINENO + 5 ))',$p' $0`"
 fi
 
+exit
+
+# embedded ruby code
+puts 'Running specs...'
+
+require 'rspec'
+flag = RSpec::Core::Runner.run(['spec'], $stderr, $stdout)
+
+if flag != 0
+  message = <<-MSG
+\e[31m
+---------------------------------------
+Fix your changes/specs before commit!!!
+---------------------------------------
+\e[0m
+  MSG
+  puts message
+end
+exit flag
